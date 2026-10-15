@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  backend-test:
+    name: Backend Tests (FastAPI / Python 3.12)
+    uses: Nain9Dev/.github/.github/workflows/reusable-python.yml@main
+    with:
+      python-version: "3.12"
+      requirements-file: "backend/requirements.txt"
+      test-command: "cd backend && python -m pytest tests -v"
+      run-ruff: false
+
+  frontend-test:
+    name: Frontend Build (Vue 3 / TypeScript)
+    uses: Nain9Dev/.github/.github/workflows/reusable-web.yml@main
+    with:
+      node-version: "22.x"
+      install-command: "cd frontend && npm install"
+      test-command: "cd frontend && npx tsc --noEmit"
+      build-command: "cd frontend && npm run build"
+      run-build: true
