@@ -1,6 +1,7 @@
-from typing import Optional
+
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
+
 from app.domain.interfaces import ItemRepositoryProtocol
 from app.domain.models import Item
 from app.infrastructure.db import ItemORM
@@ -10,7 +11,7 @@ class SqlAlchemyItemRepository(ItemRepositoryProtocol):
     def __init__(self, session: AsyncSession):
         self._session = session
 
-    async def get_by_id(self, item_id: int) -> Optional[Item]:
+    async def get_by_id(self, item_id: int) -> Item | None:
         res = await self._session.get(ItemORM, item_id)
         if not res:
             return None
@@ -49,14 +50,13 @@ class SqlAlchemyItemRepository(ItemRepositoryProtocol):
             await self._session.refresh(orm)
             item.id = orm.id
             return item
-        else:
-            orm = await self._session.get(ItemORM, item.id)
-            if orm:
-                orm.title = item.title
-                orm.description = item.description
-                orm.is_active = item.is_active
-                await self._session.commit()
-            return item
+        orm = await self._session.get(ItemORM, item.id)
+        if orm:
+            orm.title = item.title
+            orm.description = item.description
+            orm.is_active = item.is_active
+            await self._session.commit()
+        return item
 
     async def delete(self, item_id: int) -> bool:
         orm = await self._session.get(ItemORM, item_id)

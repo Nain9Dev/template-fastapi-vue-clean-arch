@@ -1,0 +1,36 @@
+version: '3'
+
+tasks:
+  dev:
+    desc: "Start local development backend with hot reload"
+    dir: backend
+    cmds:
+      - python -m uvicorn app.main:app --reload --port 8000
+
+  test:
+    desc: "Execute backend unit, integration, and architecture fitness tests"
+    dir: backend
+    cmds:
+      - python -m pytest -v
+
+  lint:
+    desc: "Verify Python style and formatting with Ruff"
+    dir: backend
+    cmds:
+      - ruff check .
+
+  format:
+    desc: "Format Python codebase with Ruff"
+    dir: backend
+    cmds:
+      - ruff format .
+
+  up:
+    desc: "Start multi-container production stack via docker compose"
+    cmds:
+      - docker compose up -d
+
+  down:
+    desc: "Stop multi-container stack"
+    cmds:
+      - docker compose down

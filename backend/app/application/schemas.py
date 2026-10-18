@@ -1,11 +1,11 @@
 from datetime import datetime
-from typing import Optional
+
 from pydantic import BaseModel, ConfigDict, Field
 
 
 class ItemBase(BaseModel):
     title: str = Field(..., min_length=3, max_length=120, description="The name of the item")
-    description: Optional[str] = Field(default="", max_length=1000)
+    description: str | None = Field(default="", max_length=1000)
 
 
 class ItemCreate(ItemBase):

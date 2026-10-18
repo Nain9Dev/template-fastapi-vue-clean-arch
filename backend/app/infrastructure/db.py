@@ -1,7 +1,9 @@
-from typing import AsyncGenerator
+from collections.abc import AsyncGenerator
+from datetime import UTC, datetime
+
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
-from datetime import datetime, timezone
+
 from app.core.config import settings
 
 
@@ -16,7 +18,7 @@ class ItemORM(Base):
     title: Mapped[str] = mapped_column(nullable=False, index=True)
     description: Mapped[str] = mapped_column(nullable=False, default="")
     is_active: Mapped[bool] = mapped_column(nullable=False, default=True)
-    created_at: Mapped[datetime] = mapped_column(default=lambda: datetime.now(timezone.utc))
+    created_at: Mapped[datetime] = mapped_column(default=lambda: datetime.now(UTC))
 
 
 engine = create_async_engine(

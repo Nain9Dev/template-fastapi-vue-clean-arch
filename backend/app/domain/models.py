@@ -1,6 +1,5 @@
 from dataclasses import dataclass
-from datetime import datetime, timezone
-from typing import Optional
+from datetime import UTC, datetime
 
 
 class DomainException(Exception):
@@ -15,7 +14,7 @@ class EntityNotFoundException(DomainException):
 
 @dataclass
 class Item:
-    id: Optional[int]
+    id: int | None
     title: str
     description: str
     is_active: bool
@@ -31,5 +30,5 @@ class Item:
             title=clean_title,
             description=description.strip(),
             is_active=True,
-            created_at=datetime.now(timezone.utc)
+            created_at=datetime.now(UTC)
         )

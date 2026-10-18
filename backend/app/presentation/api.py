@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
+
 from app.application.schemas import HealthResponse, ItemCreate, ItemRead
 from app.application.services import ItemService
 from app.core.config import settings
@@ -46,7 +47,7 @@ async def create_item(
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail={"title": "Domain Validation Error", "detail": str(e)}
-        )
+        ) from e
 
 
 @router.get("/items/{item_id}", response_model=ItemRead, tags=["Items"])
@@ -60,7 +61,7 @@ async def get_item(
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail={"title": "Not Found", "detail": str(e)}
-        )
+        ) from e
 
 
 @router.delete("/items/{item_id}", status_code=status.HTTP_204_NO_CONTENT, tags=["Items"])
@@ -74,4 +75,4 @@ async def delete_item(
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail={"title": "Not Found", "detail": str(e)}
-        )
+        ) from e

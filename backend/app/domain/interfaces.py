@@ -1,9 +1,10 @@
-from typing import Optional, Protocol
+from typing import Protocol
+
 from app.domain.models import Item
 
 
 class ItemRepositoryProtocol(Protocol):
-    async def get_by_id(self, item_id: int) -> Optional[Item]:
+    async def get_by_id(self, item_id: int) -> Item | None:
         ...
 
     async def list_all(self, limit: int = 100, offset: int = 0) -> list[Item]:
