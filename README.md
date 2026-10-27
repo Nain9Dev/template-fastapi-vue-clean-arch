@@ -1,5 +1,12 @@
 # Full Stack Clean Architecture Template
 
+[![Language: English](https://img.shields.io/badge/Language-English-blue.svg)](#)
+[![Versión en Español](https://img.shields.io/badge/Versión-Español-red.svg)](README.es.md)
+[![Architecture](https://img.shields.io/badge/Architecture-Clean%20Architecture-brightgreen)](docs/20-architecture.md)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![Vue 3](https://img.shields.io/badge/Vue-3.5-4FC08D?logo=vuedotjs&logoColor=white)](https://vuejs.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-informational)](LICENSE)
+
 Production-grade starter template for full-stack applications: **Python (FastAPI)**, **Vue 3 (TypeScript)**, and **PostgreSQL** with 0.00 € operational expense.
 
 Designed for rapid project bootstrapping, strict domain modeling, and unified governance.
