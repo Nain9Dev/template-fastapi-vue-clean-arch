@@ -1,0 +1,7 @@
+# template-fastapi-vue-clean-arch
+
+> A full-stack starter template: FastAPI with Pydantic v2 and async SQLAlchemy, a strict TypeScript Vue 3 client, PostgreSQL or SQLite, and Clean Architecture.
+
+- Page: https://template-fastapi.naindev.com/
+- Source code: https://github.com/Nain9Dev/template-fastapi-vue-clean-arch
+- Author: https://www.naindev.com/
